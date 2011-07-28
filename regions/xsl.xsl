@@ -2,16 +2,13 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output encoding="UTF-8"/>
 
-  <xsl:template match="/">
-    <!--
-      для каждого региона в плоском списке определить:
-      есть ли рядом в списке его родитель любого уровня.
-
-      россия - false (у него нет вообще родителей)
-      таганрог - true (россия является для него родителем)
-      киев - false (для нет родителей в плоском списке, хоть в дереве выше него стоит украина)
-
-    -->
-  </xsl:template>
-
+	<xsl:template match="/">
+		<xsl:for-each select = "//flat/area">
+			<xsl:text> </xsl:text>
+			<xsl:value-of select = "./@name"/>
+			<xsl:text>: </xsl:text>
+			<xsl:copy-of select = "//tree//area[@name = current()/@name]/ancestor::area/@name = ../area[@name!=current()/@name]/@name"/>				
+		</xsl:for-each>		
+	</xsl:template>
+	
 </xsl:stylesheet>
