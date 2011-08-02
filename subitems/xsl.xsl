@@ -9,7 +9,7 @@
 
 <xsl:template match="resume" mode="main">
 	<resume id="{@rid}" user="{@uid}">
-		<xsl:apply-templates select = "./following-sibling::resume[@uid = current()/@uid]"  mode="additional"/>		
+		<xsl:apply-templates select = "following-sibling::resume[@uid = current()/@uid]"  mode="additional"/>		
 	</resume>
 </xsl:template>
 
